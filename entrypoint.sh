@@ -11,7 +11,7 @@ elif [ ! -t 0 ]; then
 #    echo "Container not configured. Run with -it flags to configure interactively - 2"
 # Run interactive configuration
 else
-    rclone config
+    rclone config create remote $RCLONE_REMOTE_TYPE config_is_local false
 fi
 
 exec "$@"
