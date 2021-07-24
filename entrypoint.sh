@@ -14,7 +14,10 @@ else
 fi
 
 while true; do
-    time=10
-    sleep $time
+    curr_time=$(date -d "now" +%s)
+    tomm_time=$(date -d "next day 1 am" +%s)
+    wait_time=$(echo "$tomm_time - $curr_time" | bc)
+    echo "Sleeping until 1am"
+    sleep $wait_time
     sh -c "$(echo $@)"
 done
