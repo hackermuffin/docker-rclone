@@ -1,5 +1,5 @@
 #!/bin/sh
-sh
+
 # Check if remote is already configured
 if rclone about remote: > /dev/null 2&>1; then
     echo "Remote already configured"
