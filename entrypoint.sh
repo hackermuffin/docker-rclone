@@ -1,5 +1,5 @@
 #!/bin/sh
-
+sh
 # Check if remote is already configured
 if rclone about remote: > /dev/null 2&>1; then
     echo "Remote already configured"
@@ -18,8 +18,8 @@ else
 fi
 
 while true; do
-    curr_time=$(date -d "now" +%s)
-    tomm_time=$(date -d "next day 1 am" +%s)
+    curr_time=$(date +%s)
+    tomm_time=$(date -d '25:00' +%s)
     wait_time=$(echo "$tomm_time - $curr_time" | bc)
     echo "Sleeping until 1am"
     sleep $wait_time
