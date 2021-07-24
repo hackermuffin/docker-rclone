@@ -6,11 +6,15 @@ if rclone about remote: > /dev/null 2&>1; then
 # Check if tty is allocated
 elif [ ! -t 0 ]; then
     echo "Container not configured. Run with -it flags to configure interactively"
+    exit
 # Still need to check if interactive
 # Run interactive configuration
 else
-    echo "Starting interactive config. Please configure a remote called 'remote:'"
-    rclone config
+    while [[ -eq $(rclone about remote:) ]]; do
+	echo ""
+        echo "Starting interactive config. Please configure a remote called 'remote:'"
+        rclone config
+    done
 fi
 
 while true; do
