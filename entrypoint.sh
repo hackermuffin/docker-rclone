@@ -2,19 +2,10 @@
 
 # Check if remote is already configured
 if rclone about remote: > /dev/null 2&>1; then
-    echo "Remote already configured"
-# Check if tty is allocated
-elif [ ! -t 0 ]; then
-    echo "Container not configured. Run with -it flags to configure interactively"
-    exit
-# Still need to check if interactive
-# Run interactive configuration
+    echo "Remote configured"
+# If not, exit
 else
-    while [[ -eq $(rclone about remote:) ]]; do
-	echo ""
-        echo "Starting interactive config. Please configure a remote called 'remote:'"
-        rclone config
-    done
+    echo "Remote not configured. Run rclone locally, then mount the config file to /config/rclone/
 fi
 
 while true; do
